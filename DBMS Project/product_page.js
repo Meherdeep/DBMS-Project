@@ -6,14 +6,14 @@ $(document).ready(function() {
 const root = document.getElementById('products');
 
 var request = new XMLHttpRequest();
-request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+request.open('GET', 'http://localhost:5000/products', true);
 request.onload = function () {
 
     var data = JSON.parse(this.response);
 
     if (request.status >= 200 && request.status < 400) {
-        data.forEach(movie => {
-            console.log(movie.title);
+        data.forEach(product => {
+            console.log(product.item);
 
             const item = document.createElement('div');
             item.setAttribute('class', 'item  col-xs-4 col-md-3');
@@ -23,7 +23,7 @@ request.onload = function () {
 
             const image = document.createElement('img');
             image.setAttribute('class', 'group list-group-image');
-            image.setAttribute('src', 'http://res.cloudinary.com/dnhwxgf8i/image/upload/c_scale,h_250,w_400/v1488011915/mockup3_kxxwfy.jpg');
+            image.setAttribute('src', product.image);
             image.setAttribute('alt', 'test_image');
 
             const category = document.createElement('div');
@@ -31,14 +31,14 @@ request.onload = function () {
 
             const catName = document.createElement('h5');
             catName.setAttribute('class', 'category-name');
-            catName.textContent = movie.title;
+            catName.textContent = product.category;
 
             const caption = document.createElement('div');
             caption.setAttribute('class', 'caption');
 
             const itemHead = document.createElement('h4');
             itemHead.setAttribute('class', 'group inner list-group-item-heading');
-            itemHead.textContent = movie.title;
+            itemHead.textContent = product.item;
 
             const row = document.createElement('div');
             row.setAttribute('class', 'row');
@@ -48,7 +48,7 @@ request.onload = function () {
 
             const lead = document.createElement('p');
             lead.setAttribute('class', 'lead');
-            lead.textContent = "$2,100";
+            lead.textContent = product.price;
 
             const buttons = document.createElement('div');
             buttons.setAttribute('class', 'btn-group');
