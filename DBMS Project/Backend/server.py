@@ -43,7 +43,7 @@ def register():
 
     reg = {
         'name': request.args.get('name'),
-        'email': request.args.get('email'),
+        'uname': request.args.get('email'),
         'password': request.args.get('pass')
     }
     print(reg)
@@ -58,17 +58,21 @@ def login():
     uname = request.args.get('email')
     password = request.args.get('pass')
 
-    val = db.login.find_one({'email': uname})
-
+    val = db.login.find_one({'uname': uname})
+    
+    if val == None:
+        return 'Bad'
+    
     if val['password'] == password:
         return 'Good'
     return 'Bad'
 
 # http://localhost:5000/shipping
 @app.route('/shipping')
-def track():
+def shipping():
 
     reg = {
+        'uname': request.args.get('uname'),
         'name': request.args.get('name'),
         'email': request.args.get('email'),
         'contact': request.args.get('contact'),
@@ -81,6 +85,21 @@ def track():
         return 'Good'
     except:
         return 'Bad'
+
+# http://localhost:5000/cart
+@app.route('/cart')
+def cart():
+
+    reg = {
+        'uname': request.args.get('uname'),
+        'item': request.args.get('item')
+    }
+
+    try:
+        db.cart.insert_one(reg)
+        return 'Success: Item added to cart'
+    except:
+        return 'Error: Item not added to cart'
 
 
 if __name__ == '__main__':
