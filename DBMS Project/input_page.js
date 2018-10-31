@@ -17,3 +17,28 @@ for (var i = 0; i < inputs.length; i++) {
 				leaveInput(this);
 		});
 }
+
+function shipping() {
+    var name = document.getElementById('first').value;
+    var email = document.getElementById('last').value;
+    var contact = document.getElementById('Contact').value;
+    var address = document.getElementById('address').value;
+    var zip = document.getElementById('ZipCode').value;
+
+    var request = new XMLHttpRequest();
+    var req_url = 'http://localhost:5000/shipping?email=' + email + '&name=' + name + '&contact=' + contact + '&address=' + address + '&zip=' + zip;
+    // console.log(req_url);
+    request.open('GET', req_url, true);
+    request.onload = function () {
+        var data = this.response;
+        console.log(data);
+
+        if(data == 'Good'){
+            window.location.href = 'product_page.html';
+        }
+        else{
+            window.location.href = 'input_page.html';
+        }
+    }
+    request.send();
+}
