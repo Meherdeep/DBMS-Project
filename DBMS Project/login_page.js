@@ -45,6 +45,8 @@ function login() {
 
     if(data == 'Good'){
         window.location.href = 'input_page.html';
+        sessionStorage.setItem('uname', email);
+        console.log(email);
     }
     else{
         window.location.href = 'login_page.html';
