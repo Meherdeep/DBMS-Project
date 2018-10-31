@@ -2,7 +2,8 @@ $(document).ready(function() {
     $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
     $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
 });
-
+var uname = sessionStorage.getItem('uname');
+console.log(uname);
 const root = document.getElementById('products');
 
 var request = new XMLHttpRequest();
@@ -55,12 +56,11 @@ request.onload = function () {
 
             const btnDetails = document.createElement('a');
             btnDetails.setAttribute('class', 'btn btn-details');
-            btnDetails.setAttribute('href', 'http://www.jquery2dotnet.com');
             btnDetails.textContent = "Details";
 
             const success = document.createElement('a');
             success.setAttribute('class', 'btn btn-success');
-            success.setAttribute('href', 'http://www.jquery2dotnet.com');
+            success.setAttribute('onclick', 'addToCart("' + product.item + '")');
             success.textContent = "Add to Cart";
 
             root.appendChild(item);
@@ -84,3 +84,16 @@ request.onload = function () {
     }
 }
 request.send();
+
+function addToCart(item) {
+    var request = new XMLHttpRequest();
+    var req_url = 'http://localhost:5000/cart?item=' + item + '&uname=' + uname;
+    console.log(req_url);
+
+    request.open('GET', req_url, true);
+    request.onload = function () {
+        var data = this.response;
+        console.log(data);
+    }
+    request.send();
+}
