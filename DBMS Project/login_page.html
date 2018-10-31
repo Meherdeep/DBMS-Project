@@ -14,7 +14,7 @@
   
 </head>
 
-<body background="website-background.png">
+<body background="images/website-background.png">
 
   <body>
 
@@ -23,14 +23,14 @@
       <div class="loginMsg">
         <div class="textcontent">
           <p class="title">Don't have an account?</p>
-          <p>Sign up to start shopping.</p>
+          <p>Sign up to start tracking.</p>
           <button id="switch1">Sign Up</button>
         </div>
       </div>
       <div class="signupMsg visibility">
         <div class="textcontent">
           <p class="title">Have an account?</p>
-          <p>Log in to see all your collection.</p>
+          <p>Log in to see all your bookings.</p>
           <button id="switch2">LOG IN</button>
         </div>
       </div>
@@ -45,7 +45,7 @@
           <input type="password" name="password" placeholder="  PASSWORD">
         </div>
         <p>FORGOT PASSWORD?</p>
-        <button>LOG IN</button>
+        <button onclick="login()">LOG IN</button>
       </div>
 
       <div class="signup hide">
@@ -55,7 +55,7 @@
           <input type="text" name="email" placeholder="  EMAIL">
           <input type="password" name="password" placeholder="  PASSWORD">
         </div>
-        <button>SIGN UP</button>
+        <button onclick="signup()">SIGN UP</button>
       </div>
 
     </div>
