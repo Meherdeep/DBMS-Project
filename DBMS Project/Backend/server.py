@@ -27,7 +27,8 @@ CORS(app)
 @app.route('/products')
 def products():
 
-    cursor = db.products.find({})
+    cat = request.args.get('type')
+    cursor = db.products.find({'type': cat})
     response = []
     for doc in cursor:
         doc.pop('_id', 0)
@@ -92,7 +93,8 @@ def cart():
 
     reg = {
         'uname': request.args.get('uname'),
-        'item': request.args.get('item')
+        'item': request.args.get('item'),
+        'type': request.args.get('type')
     }
 
     try:
