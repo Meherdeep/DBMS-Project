@@ -19,7 +19,8 @@ def data_to_mongo(params):
             'image': each['Image'],
             'category': each['Category'],
             'item': each['Item'],
-            'price': each['Price']
+            'price': '$' + str(each['Price']),
+            'type': each['Type']
         }
         product_list.append(product_info)
     
