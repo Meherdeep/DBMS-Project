@@ -38,7 +38,7 @@ function shipping() {
         console.log(data);
 
         if(data == 'Good'){
-            window.location.href = 'product_page.html';
+            window.location.href = 'DBMS_project.html';
         }
         else{
             window.location.href = 'input_page.html';
